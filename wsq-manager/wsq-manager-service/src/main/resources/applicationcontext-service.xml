@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <import resource="classpath*:applicationcontext-dao.xml"/>
+
+    <!-- 注解自动扫描的包 -->
+    <context:component-scan base-package="accountserv"/>
+
+    <!-- 生成一个事务管理器bean -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 这是以xml的方式进行事务的apo配置 -->
+    <!--<tx:advice id="txAdvice" transaction-manager="txManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="savet" propagation="REQUIRED" rollback-for="java.lang.RuntimeException"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+    <!--<aop:config>-->
+        <!--<aop:advisor advice-ref="txAdvice" pointcut="execution(* accountserv.impl.*.*(..))"></aop:advisor>-->
+    <!--</aop:config>-->
+
+    <!--
+    开始事务的注解配置，这样就可以在任意一个方法上通过添加注解的方式对方法开始事务了。
+    以下两种方式都可以达到目的，区别再于第一种方式指定了transaction-manager
+    -->
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <!--<tx:annotation-driven/>-->
+</beans>

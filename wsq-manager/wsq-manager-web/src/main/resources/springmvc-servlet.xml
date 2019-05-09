@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="wsq.account.controller"/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="defaultCharset" value="UTF-8"/>
+                <property name="fastJsonConfig" ref="fastJsonConfig"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <bean class="com.alibaba.fastjson.support.config.FastJsonConfig" id="fastJsonConfig">
+        <property name="parserConfig" ref="parserConfig"/>
+        <property name="serializerFeatures">
+            <list>
+                <value>WriteNullBooleanAsFalse</value>
+                <value>WriteNullStringAsEmpty</value>
+                <value>WriteNullListAsEmpty</value>
+                <value>WriteNullNumberAsZero</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="com.alibaba.fastjson.parser.ParserConfig" id="parserConfig">
+        <property name="jacksonCompatible" value="true"/>
+        <property name="autoTypeSupport" value="true"/>
+    </bean>
+    <mvc:view-resolvers>
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="prefix" value="/WEB-INF/views"/>
+            <property name="suffix" value=".jsp"/>
+        </bean>
+    </mvc:view-resolvers>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="17367648787"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+</beans>
