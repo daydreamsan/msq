@@ -25,7 +25,7 @@
         <spring.VERSION>5.1.5.RELEASE</spring.VERSION>
         <mybatis.VERSION>3.4.6</mybatis.VERSION>
         <mybatis.spring.VERSION>1.3.2</mybatis.spring.VERSION>
-        <mysql.VERSION>8.0.15</mysql.VERSION>
+        <mysql.VERSION>8.0.16</mysql.VERSION>
         <druid.VERSION>1.1.16</druid.VERSION>
         <fastjson.VERSION>1.2.58</fastjson.VERSION>
         <servlet-api.VERSION>4.0.1</servlet-api.VERSION>
