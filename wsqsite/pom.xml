@@ -27,7 +27,7 @@
         <mybatis.spring.VERSION>1.3.2</mybatis.spring.VERSION>
         <mysql.VERSION>8.0.15</mysql.VERSION>
         <druid.VERSION>1.1.16</druid.VERSION>
-        <fastjson.VERSION>1.2.58</fastjson.VERSION>
+        <fastjson.VERSION>1.2.83</fastjson.VERSION>
         <servlet-api.VERSION>4.0.1</servlet-api.VERSION>
         <jsp-api.VERSION>2.3.3</jsp-api.VERSION>
         <jstl.VERSION>1.2</jstl.VERSION>
